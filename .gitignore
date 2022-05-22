@@ -1,2 +1,8 @@
 
 \nana_1.7.4
+*.obj
+*.ipch
+*.db
+*.tlog
+*.log
+*.recipe
