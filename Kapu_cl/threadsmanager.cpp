@@ -70,12 +70,19 @@ void ThreadsManager::threadStop(nana::label &_label) {
 // Update the text with the time remaining.
 // 
 void ThreadsManager::countingStart(nana::label &_label, nana::textbox &_tbHr, nana::textbox &_tbMn, nana::button &_btnCan, nana::button &_btnApp, nana::button &_btnSle, nana::button &_btnHib, nana::button &_btnShu) {
-    // Declare and initialize the cut-off time.
-    std::chrono::time_point<std::chrono::steady_clock> tpDue { std::chrono::steady_clock::now() + std::chrono::hours(_tbHr.to_int()) + std::chrono::minutes(_tbMn.to_int()) };
+    // Cast due date string value in int
+    int iDueHour(_tbHr.to_int()),
+        iDueMins(_tbMn.to_int());
 
+    // Declare and initialize the cut-off time.
+    std::chrono::time_point<std::chrono::steady_clock> tpDue { std::chrono::steady_clock::now() + std::chrono::hours(iDueHour) + std::chrono::minutes(iDueMins) };
+    
     // While seconds remains and the stop of the thread has not been requested.
-    while (int iTotalSc = static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(tpDue - std::chrono::steady_clock::now()).count()) >= 0
-        && m_bThdRun) {
+    int iTotalSc(0);
+    do {
+        // Calculate how many time remains before the due date
+        int iTotalSc = static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(tpDue - std::chrono::steady_clock::now()).count());
+
         // Calculate the number of hours, minutes and seconds remaining.
         int iDeltaHr { iTotalSc / 3600 },
             iDeltaMn { (iTotalSc % 3600) / 60 },
@@ -92,7 +99,8 @@ void ThreadsManager::countingStart(nana::label &_label, nana::textbox &_tbHr, na
 
         // Relinquish its current use of processor for 1/3s.
         ::Sleep(333);
-    }
+    } while (iTotalSc >= 0
+        && m_bThdRun);
 
     // If there is no time remaining (which means that the user has not requested that the thread be terminated).
     if (m_bThdRun) {

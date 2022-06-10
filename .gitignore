@@ -6,3 +6,9 @@
 *.tlog
 *.log
 *.recipe
+*.pdb
+*.idb
+*.iobj
+*.ipdb
+Kapu_cl/x64/Debug/Kapu_cl.vcxproj.FileListAbsolute.txt
+Kapu_cl/x64/Release/Kapu_cl.vcxproj.FileListAbsolute.txt
