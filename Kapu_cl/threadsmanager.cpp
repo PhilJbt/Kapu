@@ -100,7 +100,7 @@ void ThreadsManager::countingStart(nana::label &_label, nana::textbox &_tbHr, na
         // Relinquish its current use of processor for 1/3s.
         ::Sleep(333);
     } while (iTotalSc >= 0
-        && m_bThdRun);
+        || m_bThdRun);
 
     // If there is no time remaining (which means that the user has not requested that the thread be terminated).
     if (m_bThdRun) {
