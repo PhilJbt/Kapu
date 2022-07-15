@@ -81,7 +81,7 @@ void ThreadsManager::countingStart(nana::label &_label, nana::textbox &_tbHr, na
     int iTotalSc(0);
     do {
         // Calculate how many time remains before the due date
-        int iTotalSc = static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(tpDue - std::chrono::steady_clock::now()).count());
+        iTotalSc = static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(tpDue - std::chrono::steady_clock::now()).count());
 
         // Calculate the number of hours, minutes and seconds remaining.
         int iDeltaHr { iTotalSc / 3600 },
@@ -100,7 +100,7 @@ void ThreadsManager::countingStart(nana::label &_label, nana::textbox &_tbHr, na
         // Relinquish its current use of processor for 1/3s.
         ::Sleep(333);
     } while (iTotalSc >= 0
-        || m_bThdRun);
+        && m_bThdRun);
 
     // If there is no time remaining (which means that the user has not requested that the thread be terminated).
     if (m_bThdRun) {
