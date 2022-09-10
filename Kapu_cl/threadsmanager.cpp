@@ -81,7 +81,7 @@ void ThreadsManager::countingStart(nana::label &_label, nana::textbox &_tbHr, na
     int iTotalSc(0);
     do {
         // Calculate how many time remains before the due date
-        int iTotalSc = static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(tpDue - std::chrono::steady_clock::now()).count());
+        iTotalSc = static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(tpDue - std::chrono::steady_clock::now()).count());
 
         // Calculate the number of hours, minutes and seconds remaining.
         int iDeltaHr { iTotalSc / 3600 },
