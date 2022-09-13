@@ -8,6 +8,6 @@ Application to put in standby, in hibernation, or shut down a Windows workstatio
 
 | DOWNLOADS |
 :----------------------------------------------------------: |
-| ![Kapu v1.0 (x64)](../../releases/tag/v1.0) | 
+| [Kapu v1.0 (x64)](../../releases/tag/v1.0) | 
 
 > Uses https://nanapro.org/ (1.7.4)
