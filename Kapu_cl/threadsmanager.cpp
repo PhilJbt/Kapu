@@ -120,7 +120,7 @@ void ThreadsManager::countingStart(nana::label &_label, nana::textbox &_tbHr, na
         switch (m_eType) {
         // Shutdown
         case eType::shutdown:
-            ::system("shutdown -P now");
+            ::system("shutdown /p");
             break;
 
         // Sleep or Hibernate
